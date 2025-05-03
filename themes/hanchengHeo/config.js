@@ -22,7 +22,7 @@ const CONFIG = {
   HEO_HERO_TITLE_2: '与思维认知',
   HEO_HERO_TITLE_3: 'HANCHENG.BLOG',
   HEO_HERO_TITLE_4: '新版上线',
-  HEO_HERO_TITLE_5: 'NotionNext 博客定制版',
+  HEO_HERO_TITLE_5: '专注AI自动化工作流，AI编程助手',
   HEO_HERO_TITLE_LINK: 'https://hancheng.blog',
   // 英雄区遮罩文字
   HEO_HERO_COVER_TITLE: '随便逛逛',
