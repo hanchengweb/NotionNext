@@ -29,10 +29,10 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
 
   return (
     <article
-      className='wow fadeInUp'>
+      className='wow fadeInUp mb-4'>
       <div
         data-wow-delay='.2s'
-        className='border bg-white dark:bg-[#1e1e1e] flex mb-6 flex-row h-40 md:h-48 group w-full dark:border-gray-600 hover:border-green-600 dark:hover:border-yellow-600 duration-300 transition-colors justify-between overflow-hidden rounded-lg shadow-sm hover:shadow-md'>
+        className='border bg-white dark:bg-[#1e1e1e] flex mb-4 flex-row h-40 md:h-48 group w-full dark:border-gray-600 hover:border-green-600 dark:hover:border-yellow-600 duration-300 transition-colors justify-between overflow-hidden rounded-lg shadow-sm hover:shadow-md'>
         {/* 图片封面 */}
         {showPageCover && (
           <Link href={post?.href} passHref legacyBehavior>
@@ -51,11 +51,11 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
         {/* 文字区块 */}
         <div
           className='flex p-4 md:p-5 flex-col justify-between w-full'>
-          <header className='mb-2'>
+          <header className='mb-2 md:mb-3'>
             {/* 分类 */}
             {post?.category && (
               <div
-                className='flex mb-1 items-center text-xs text-gray-500 dark:text-gray-400 hover:text-green-700 dark:hover:text-yellow-500'>
+                className='flex mb-1 md:mb-2 items-center text-xs text-gray-500 dark:text-gray-400 hover:text-green-700 dark:hover:text-yellow-500'>
                 <Link
                   passHref
                   href={`/category/${post.category}`}
@@ -69,25 +69,27 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
             <Link
               href={post?.href}
               passHref
-              className='group-hover:text-green-700 dark:hover:text-yellow-700 dark:group-hover:text-yellow-600 text-black dark:text-gray-100 line-clamp-1 replace cursor-pointer text-xl md:text-2xl font-bold leading-tight'>
-              {siteConfig('POST_TITLE_ICON') && (
-                <NotionIcon
-                icon={post.pageIcon}
-                className="heo-icon w-5 h-5 mr-1 align-middle transform translate-y-[-8%]" // 专门为 Heo 主题的图标设置样式
-              />
-              )}
-              <span className='menu-link'>{post.title}</span>
+              className='group-hover:text-green-700 dark:hover:text-yellow-700 dark:group-hover:text-yellow-600 text-black dark:text-gray-100 line-clamp-2 replace cursor-pointer text-xl md:text-2xl font-bold leading-tight'>
+              <div className="flex items-center">
+                {siteConfig('POST_TITLE_ICON') && (
+                  <NotionIcon
+                    icon={post.pageIcon}
+                    className="heo-icon w-5 h-5 mr-2 flex-shrink-0" 
+                  />
+                )}
+                <span className='menu-link'>{post.title}</span>
+              </div>
             </Link>
           </header>
 
           {/* 摘要 */}
           {(!showPreview || showSummary) && (
-            <main className='line-clamp-3 replace text-gray-700 dark:text-gray-300 text-sm md:text-base font-light leading-relaxed mb-3'>
+            <main className='line-clamp-2 md:line-clamp-3 replace text-gray-700 dark:text-gray-300 text-sm md:text-base font-light leading-relaxed mb-3 md:mb-4'>
               {post.summary}
             </main>
           )}
 
-          <div className='md:flex flex-wrap justify-between flex items-center'>
+          <div className='flex flex-col md:flex-row md:flex-wrap justify-between items-start md:items-center'>
             <div className='flex items-center text-xs text-gray-500 dark:text-gray-400'>
               <div className='flex items-center mr-4'>
                 <i className='fa-regular fa-calendar mr-1'></i> {post.publishDay}
@@ -98,7 +100,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
                 </div>
               )}
             </div>
-            <div className='text-xs flex mt-2 md:mt-0'>
+            <div className='text-xs flex mt-2 md:mt-0 flex-wrap'>
               {post.tagItems?.slice(0, 3).map(tag => (
                 <TagItemMini key={tag.name} tag={tag} />
               ))}

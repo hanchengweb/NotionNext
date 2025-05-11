@@ -143,7 +143,7 @@ const Header = props => {
         className={`z-20 h-16 top-0 w-full duration-300 transition-all
             ${fixedNav ? 'fixed' : 'relative bg-transparent'} 
             ${textWhite ? 'text-white ' : 'text-black dark:text-white'}  
-            ${navBgWhite ? 'bg-white dark:bg-[#18171d] shadow' : 'bg-transparent'}`}>
+            ${navBgWhite ? 'bg-white dark:bg-[#18171d] shadow-md' : 'bg-transparent'}`}>
         <div className='flex h-full mx-auto justify-between items-center max-w-[86rem] px-6'>
           {/* 左侧logo */}
           <Logo {...props} />
@@ -166,7 +166,7 @@ const Header = props => {
           </div>
 
           {/* 右侧固定 */}
-          <div className='flex flex-shrink-0 justify-end items-center w-48'>
+          <div className='flex flex-shrink-0 justify-end items-center w-48 space-x-2'>
             <RandomPostButton {...props} />
             <SearchButton {...props} />
             {!JSON.parse(siteConfig('THEME_SWITCH')) && (
@@ -179,7 +179,7 @@ const Header = props => {
             {/* 移动端菜单按钮 */}
             <div
               onClick={toggleMenuOpen}
-              className='flex lg:hidden w-8 justify-center items-center h-8 cursor-pointer'>
+              className='flex lg:hidden w-8 justify-center items-center h-8 cursor-pointer ml-2'>
               <i className='fas fa-bars' />
             </div>
           </div>
