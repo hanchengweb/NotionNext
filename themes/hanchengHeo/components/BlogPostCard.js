@@ -89,7 +89,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
             </main>
           )}
 
-          <div className='flex flex-col md:flex-row md:flex-wrap justify-between items-start md:items-center'>
+          <div className='relative w-full'>
             <div className='flex items-center text-xs text-gray-500 dark:text-gray-400'>
               <div className='flex items-center mr-4'>
                 <i className='fa-regular fa-calendar mr-1'></i> {post.publishDay}
@@ -100,7 +100,8 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
                 </div>
               )}
             </div>
-            <div className='text-xs flex mt-2 md:mt-0 flex-wrap'>
+            
+            <div className='absolute bottom-0 right-0 text-xs flex flex-wrap h-auto' style={{maxHeight: '24px'}}>
               {post.tagItems?.slice(0, 3).map(tag => (
                 <TagItemMini key={tag.name} tag={tag} />
               ))}
