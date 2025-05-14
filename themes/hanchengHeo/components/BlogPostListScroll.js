@@ -36,37 +36,39 @@ const BlogPostListScroll = ({
   }
 
   // 监听滚动自动分页加载
-  const scrollTrigger = () => {
-    requestAnimationFrame(() => {
-      const scrollS = window.scrollY + window.outerHeight
-      const clientHeight = targetRef
-        ? targetRef.current
-          ? targetRef.current.clientHeight
-          : 0
-        : 0
-      if (scrollS > clientHeight + 100) {
+  const scrollTrigger = useRef(null)
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      const entry = entries[0]
+      if (entry.isIntersecting) {
         handleGetMore()
       }
     })
+
+    const container = scrollTrigger.current
+    if (container) {
+      observer.observe(container)
   }
 
-  // 监听滚动
-  useEffect(() => {
-    window.addEventListener('scroll', scrollTrigger)
     return () => {
-      window.removeEventListener('scroll', scrollTrigger)
+      observer.disconnect()
     }
-  })
+  }, [scrollTrigger, hasMore, handleGetMore])
 
-  const targetRef = useRef(null)
-  // 始终使用单列布局
-  if (!postsToShow || postsToShow.length === 0) {
-    return <BlogPostListEmpty currentSearch={currentSearch} />
-  } else {
+  // 监听搜索输入框变化
+  useEffect(() => {
+    updatePage(1)
+  }, [currentSearch])
+
     return (
-      <div id='container' ref={targetRef} className='w-full px-2 md:px-4'>
-        {/* 文章列表 */}
-        <div className='space-y-6 my-6'>
+    <div id='post-list' className='mt-5 mb-2'>
+      <div className='md:px-5'>
+        {(!posts || posts.length === 0) && (
+          <BlogPostListEmpty currentSearch={currentSearch} />
+        )}
+        {posts && posts.length > 0 && (
+          <>
+            <div className='flex flex-wrap space-y-4'>
           {postsToShow.map(post => (
             <BlogPostCard
               key={post.id}
@@ -76,26 +78,21 @@ const BlogPostListScroll = ({
             />
           ))}
         </div>
-
-        {/* 更多按钮 */}
-        <div>
+            <div ref={scrollTrigger} />
           <div
-            onClick={() => {
-              handleGetMore()
-            }}
-            className='w-full my-6 py-4 text-center cursor-pointer rounded-xl dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200'>
-            {hasMore ? (
-              <span className='flex items-center justify-center'>
-                <i className='fas fa-sync-alt mr-2'></i> {locale.COMMON.MORE}
-              </span>
-            ) : (
-              <span className='text-gray-400'>{locale.COMMON.NO_MORE}</span>
-            )}
+              onClick={handleGetMore}
+              className={`w-full my-4 ${
+                hasMore ? 'visible' : 'hidden'
+              } flex justify-center cursor-pointer`}>
+              <div className='bg-white dark:bg-[#1e1e1e] dark:text-gray-200 rounded-xl text-xl px-4 py-2 hover:text-[#2a9d8f] dark:hover:text-[#57c4b5] border'>
+                {locale.COMMON.MORE}
           </div>
+            </div>
+          </>
+        )}
         </div>
       </div>
     )
-  }
 }
 
 export default BlogPostListScroll

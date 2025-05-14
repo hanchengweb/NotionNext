@@ -18,14 +18,15 @@ const BlogPostListPage = ({ page = 1, posts = [], postCount, siteInfo }) => {
   const POSTS_PER_PAGE = siteConfig('POSTS_PER_PAGE', 12, NOTION_CONFIG)
   const totalPage = Math.ceil(postCount / POSTS_PER_PAGE)
   const showPagination = postCount >= POSTS_PER_PAGE
-  // 始终使用单列布局
+  const POST_TWO_COLS = siteConfig('HEO_HOME_POST_TWO_COLS', true, CONFIG)
   if (!posts || posts.length === 0 || page > totalPage) {
     return <BlogPostListEmpty />
   } else {
     return (
-      <div id='container' className='w-full px-2 md:px-4'>
+      <div id='container' className='w-full mb-4'>
         {/* 文章列表 */}
-        <div className='space-y-6 my-6'>
+        <div
+          className={`${POST_TWO_COLS && '2xl:grid 2xl:grid-cols-2'} grid-cols-1 gap-5`}>
           {posts?.map(post => (
             <BlogPostCard
               index={posts.indexOf(post)}

@@ -19,44 +19,46 @@ export default function LatestPostsGroupMini({ latestPosts, siteInfo }) {
 
   return latestPosts ? (
     <>
-      <div className='mb-3 px-1 flex flex-nowrap justify-between items-center'>
-        <div className='font-bold'>
-          <i className='mr-2 fas fas fa-history'></i>
+      <div className=' mb-2 px-1 flex flex-nowrap justify-between'>
+        <div>
+          <i className='mr-2 fas fas fa-history' />
           {locale.COMMON.LATEST_POSTS}
         </div>
       </div>
-      <div className='space-y-3'>
-        {latestPosts.map(post => {
-          const selected = currentPath === `${SUB_PATH}/${post.slug}`
-          const headerImage = post?.pageCoverThumbnail
-            ? post.pageCoverThumbnail
-            : siteInfo?.pageCover
+      {latestPosts.map(post => {
+        const selected =
+          currentPath === `${SUB_PATH}/${post.slug}`
+        const headerImage = post?.pageCoverThumbnail
+          ? post.pageCoverThumbnail
+          : siteInfo?.pageCover
 
-          return (
-            <Link
-              key={post.id}
-              title={post.title}
-              href={post?.href}
-              passHref
-              className={`flex items-center border rounded-lg overflow-hidden hover:border-green-600 dark:hover:border-yellow-600 group shadow-sm hover:shadow-md transition-all duration-200 ${selected ? 'border-green-600 dark:border-yellow-600' : 'border-gray-200 dark:border-gray-700'}`}>
-              <div className='w-16 h-16 overflow-hidden flex-shrink-0'>
-                <LazyImage
-                  src={`${headerImage}`}
-                  className='object-cover w-full h-full group-hover:scale-105 group-hover:brightness-90 transition-all duration-500'
-                />
+        return (
+          <Link
+            key={post.id}
+            title={post.title}
+            href={post?.href}
+            passHref
+            className={'my-3 flex'}>
+            <div className='w-20 h-14 overflow-hidden relative'>
+              <LazyImage
+                src={`${headerImage}`}
+                className='object-cover w-full h-full rounded-lg'
+              />
+            </div>
+            <div
+              className={
+                (selected ? ' text-indigo-400 ' : 'dark:text-gray-200') +
+                ' text-sm overflow-x-hidden hover:text-indigo-600 px-2 duration-200 w-full rounded ' +
+                ' hover:text-indigo-400 dark:hover:text-yellow-600 cursor-pointer items-center flex'
+              }>
+              <div>
+                <div className='line-clamp-2 menu-link'>{post.title}</div>
+                <div className='text-gray-400'>{post.lastEditedDay}</div>
               </div>
-              <div className='flex flex-col px-3 py-2 w-full overflow-hidden'>
-                <div className={`${selected ? 'text-green-500 dark:text-yellow-500' : 'dark:text-gray-200'} text-sm line-clamp-1 font-medium group-hover:text-green-600 dark:group-hover:text-yellow-600`}>
-                  {post.title}
-                </div>
-                <div className='text-gray-400 text-xs mt-1'>
-                  <i className='fa-regular fa-calendar mr-1'></i> {post.lastEditedDay}
-                </div>
-              </div>
-            </Link>
-          )
-        })}
-      </div>
+            </div>
+          </Link>
+        )
+      })}
     </>
   ) : null
 }

@@ -15,7 +15,7 @@ const LatestPostsGroup = ({ latestPosts, siteInfo }) => {
   }
 
   return (
-    <div className='space-y-4'>
+    <div className='grid grid-cols-2 gap-4'>
       {latestPosts.map(post => {
         const headerImage = post?.pageCoverThumbnail
           ? post.pageCoverThumbnail
@@ -27,21 +27,20 @@ const LatestPostsGroup = ({ latestPosts, siteInfo }) => {
             passHref
             title={post.title}
             href={post?.href}
-            className='flex flex-row items-center border rounded-lg bg-white dark:bg-[#1e1e1e] overflow-hidden hover:border-green-600 dark:hover:border-yellow-600 group shadow-sm hover:shadow-md transition-all duration-200'>
-            <div className='w-20 h-20 overflow-hidden'>
+            className={'my-3 flex flex-col w-full'}>
+            <div className='w-full h-24 md:h-60 overflow-hidden relative rounded-lg mb-2'>
               <LazyImage
                 src={`${headerImage}`}
-                className='object-cover w-full h-full group-hover:scale-105 group-hover:brightness-90 transition-all duration-500'
+                className='object-cover w-full h-full'
               />
             </div>
 
-            <div className='flex flex-col py-2 px-3 w-full'>
-              <div className='font-bold overflow-x-hidden dark:text-white group-hover:text-green-600 line-clamp-2 text-sm mb-1'>
-                {post.title}
-              </div>
-              <div className='text-xs text-gray-500 dark:text-gray-400'>
-                <i className='fa-regular fa-calendar mr-1'></i> {post.publishDay}
-              </div>
+            <div
+              className={
+                ' font-bold  overflow-x-hidden dark:text-white hover:text-indigo-600 px-2 duration-200 w-full rounded ' +
+                ' hover:text-indigo-400 cursor-pointer'
+              }>
+              <div className='line-clamp-2 menu-link'>{post.title}</div>
             </div>
           </Link>
         )

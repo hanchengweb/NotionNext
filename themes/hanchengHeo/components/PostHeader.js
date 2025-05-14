@@ -32,12 +32,12 @@ export default function PostHeader({ post, siteInfo, isDarkMode }) {
           top: 0;
           left: 0;
           box-shadow: 110px -130px 500px 100px
-            ${isDarkMode ? '#CA8A04' : '#0060e0'} inset;
+            ${isDarkMode ? '#40b3a2' : '#2a9d8f'} inset;
         }
       `}</style>
 
       <div
-        className={`${isDarkMode ? 'bg-[#CA8A04]' : 'bg-[#388e3c]'} absolute top-0 w-full h-full py-10 flex justify-center items-center`}>
+        className={`${isDarkMode ? 'bg-[#40b3a2]' : 'bg-[#2a9d8f]'} absolute top-0 w-full h-full py-10 flex justify-center items-center`}>
         {/* 文章背景图 */}
         <div
           id='post-cover-wrapper'
@@ -65,7 +65,7 @@ export default function PostHeader({ post, siteInfo, isDarkMode }) {
                   className='mr-4'
                   passHref
                   legacyBehavior>
-                  <div className='cursor-pointer font-sm font-bold px-3 py-1 rounded-lg  hover:bg-white text-white bg-green-600 dark:bg-yellow-500 hover:text-green-600 duration-200 '>
+                  <div className='cursor-pointer font-sm font-bold px-3 py-1 rounded-lg  hover:bg-white text-white bg-[#2a9d8f] dark:bg-[#57c4b5] hover:text-[#2a9d8f] duration-200 '>
                     {post.category}
                   </div>
                 </Link>

@@ -1,9 +1,9 @@
 /**
  *   HEO 主题说明
- *  > 主题设计师 [韩诚](https://hancheng.blog/)
- *  > 主题二次开发 [hancheng](https://github.com/hanchengweb)
- *  1. 开启方式 在blog.config.js 将主题配置为 `hanchengHeo`
- *  2. 更多说明参考GitHub仓库
+ *  > 主题设计者 [张洪](https://zhheo.com/)
+ *  > 主题开发者 [tangly1024](https://github.com/tangly1024)
+ *  1. 开启方式 在blog.config.js 将主题配置为 `HEO`
+ *  2. 更多说明参考此[文档](https://docs.tangly1024.com/article/notionnext-heo)
  */
 
 import Comment from '@/components/Comment'
@@ -94,7 +94,7 @@ const LayoutBase = props => {
   return (
     <div
       id='theme-heo'
-      className={`${siteConfig('FONT_STYLE')} bg-[#e8f5e9] dark:bg-[#18171d] h-full min-h-screen flex flex-col scroll-smooth`}>
+      className={`${siteConfig('FONT_STYLE')} bg-[#f0f5f4] dark:bg-[#18171d] h-full min-h-screen flex flex-col scroll-smooth`}>
       <Style />
 
       {/* 顶部嵌入 导航栏，首页放hero，文章页放文章详情 */}
@@ -396,7 +396,7 @@ const Layout404 = props => {
                 </h1>
                 <div className='dark:text-white'>请尝试站内搜索寻找文章</div>
                 <Link href='/'>
-                  <button className='bg-green-600 py-2 px-4 text-white shadow rounded-lg hover:bg-green-700 hover:shadow-md duration-200 transition-all'>
+                  <button className='bg-blue-500 py-2 px-4 text-white shadow rounded-lg hover:bg-blue-600 hover:shadow-md duration-200 transition-all'>
                     回到主页
                   </button>
                 </Link>
@@ -440,11 +440,11 @@ const LayoutCategoryIndex = props => {
               legacyBehavior>
               <div
                 className={
-                  'group mr-5 mb-5 flex flex-nowrap items-center border bg-white text-2xl rounded-xl dark:hover:text-white px-4 cursor-pointer py-3 hover:text-white hover:bg-green-600 transition-all hover:scale-110 duration-150'
+                  'group mr-5 mb-5 flex flex-nowrap items-center border bg-white text-2xl rounded-xl dark:hover:text-white px-4 cursor-pointer py-3 hover:text-white hover:bg-indigo-600 transition-all hover:scale-110 duration-150'
                 }>
                 <HashTag className={'w-5 h-5 stroke-gray-500 stroke-2'} />
                 {category.name}
-                <div className='bg-[#f1f3f8] ml-1 px-2 rounded-lg group-hover:text-green-600 '>
+                <div className='bg-[#f1f3f8] ml-1 px-2 rounded-lg group-hover:text-indigo-600 '>
                   {category.count}
                 </div>
               </div>
@@ -482,11 +482,11 @@ const LayoutTagIndex = props => {
               legacyBehavior>
               <div
                 className={
-                  'group flex flex-nowrap items-center border bg-white text-2xl rounded-xl dark:hover:text-white px-4 cursor-pointer py-3 hover:text-white hover:bg-green-600 transition-all hover:scale-110 duration-150'
+                  'group flex flex-nowrap items-center border bg-white text-2xl rounded-xl dark:hover:text-white px-4 cursor-pointer py-3 hover:text-white hover:bg-indigo-600 transition-all hover:scale-110 duration-150'
                 }>
                 <HashTag className={'w-5 h-5 stroke-gray-500 stroke-2'} />
                 {tag.name}
-                <div className='bg-[#f1f3f8] ml-1 px-2 rounded-lg group-hover:text-green-600 '>
+                <div className='bg-[#f1f3f8] ml-1 px-2 rounded-lg group-hover:text-indigo-600 '>
                   {tag.count}
                 </div>
               </div>
