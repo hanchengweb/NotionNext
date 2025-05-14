@@ -1,6 +1,6 @@
 const CONFIG = {
   HEO_HOME_POST_TWO_COLS: false, // 首页博客两列显示，若为false则只显示一列
-  HEO_LOADING_COVER: true, // 页面加载的遮罩动画
+  HEO_LOADING_COVER: false, // 页面加载的遮罩动画
 
   HEO_HOME_BANNER_ENABLE: true,
 
@@ -8,29 +8,38 @@ const CONFIG = {
 
   // 首页顶部通知条滚动内容，如不需要可以留空 []
   HEO_NOTICE_BAR: [
-    { title: '欢迎来到我的博客', url: 'https://blog.tangly1024.com' },
-    { title: '访问文档中心获取更多帮助', url: 'https://docs.tangly1024.com' }
+    { title: '欢迎来到我的博客', url: 'https://hancheng.blog' },
+    { title: '访问文档中心获取更多帮助', url: 'https://hancheng.blog' }
   ],
 
   // 英雄区左右侧组件颠倒位置
-  HEO_HERO_REVERSE: false,
+  HEO_HERO_REVERSE: true,
   // 博客主体区左右侧组件颠倒位置
-  HEO_HERO_BODY_REVERSE: false,
+  HEO_HERO_BODY_REVERSE: true,
 
   // 英雄区(首页顶部大卡)
-  HEO_HERO_TITLE_1: '分享编程',
-  HEO_HERO_TITLE_2: '与思维认知',
-  HEO_HERO_TITLE_3: 'TANGLY1024.COM',
-  HEO_HERO_TITLE_4: '新版上线',
-  HEO_HERO_TITLE_5: 'NotionNext4.0 轻松定制主题',
-  HEO_HERO_TITLE_LINK: 'https://tangly1024.com',
+  HEO_HERO_TITLE_1: 'AI分享',
+  HEO_HERO_TITLE_2: '编程思想',
+  HEO_HERO_TITLE_3: 'HANCHENG.BLOG',
+  HEO_HERO_TITLE_4: '我是韩诚',
+  HEO_HERO_TITLE_5: '一个专注于AI自动化工作流的前端开发',
+  HEO_HERO_TITLE_LINK: 'https://hancheng.blog',
   // 英雄区遮罩文字
   HEO_HERO_COVER_TITLE: '随便逛逛',
 
   // 英雄区显示三个置顶分类
-  HEO_HERO_CATEGORY_1: { title: '必看精选', url: '/tag/必看精选' },
-  HEO_HERO_CATEGORY_2: { title: '热门文章', url: '/tag/热门文章' },
-  HEO_HERO_CATEGORY_3: { title: '实用教程', url: '/tag/实用教程' },
+  HEO_HERO_CATEGORY_1: {
+    title: '必看精选',
+    url: '/category/精选'
+  },
+  HEO_HERO_CATEGORY_2: {
+    title: '热门文章',
+    url: '/category/热门'
+  },
+  HEO_HERO_CATEGORY_3: {
+    title: '实用教程',
+    url: '/category/实用'
+  },
 
   // 英雄区右侧推荐文章标签, 例如 [推荐] , 最多六篇文章; 若留空白''，则推荐最近更新文章
   HEO_HERO_RECOMMEND_POST_TAG: '推荐',
@@ -51,9 +60,9 @@ const CONFIG = {
   // 个人资料底部按钮
   HEO_INFO_CARD_URL1: '/about',
   HEO_INFO_CARD_ICON1: 'fas fa-user',
-  HEO_INFO_CARD_URL2: 'https://github.com/tangly1024',
+  HEO_INFO_CARD_URL2: 'https://github.com/hanchengweb',
   HEO_INFO_CARD_ICON2: 'fab fa-github',
-  HEO_INFO_CARD_URL3: 'https://www.tangly1024.com',
+  HEO_INFO_CARD_URL3: 'https://hancheng.blog',
   HEO_INFO_CARD_TEXT3: '了解更多',
 
   // 用户技能图标
@@ -120,7 +129,7 @@ const CONFIG = {
   HEO_SOCIAL_CARD_TITLE_1: '交流频道',
   HEO_SOCIAL_CARD_TITLE_2: '加入我们的社群讨论分享',
   HEO_SOCIAL_CARD_TITLE_3: '点击加入社群',
-  HEO_SOCIAL_CARD_URL: 'https://docs.tangly1024.com/article/how-to-question',
+  HEO_SOCIAL_CARD_URL: 'https://hancheng.blog',
 
   // 底部统计面板文案
   HEO_POST_COUNT_TITLE: '文章数:',
@@ -153,6 +162,119 @@ const CONFIG = {
   HEO_WIDGET_TO_TOP: true,
   HEO_WIDGET_TO_COMMENT: true, // 跳到评论区
   HEO_WIDGET_DARK_MODE: true, // 夜间模式
-  HEO_WIDGET_TOC: true // 移动端悬浮目录
+  HEO_WIDGET_TOC: true, // 移动端悬浮目录
+
+  // 右侧个人资料卡片
+  HEO_INFO_CARD_AVATAR: '/avatar.png', // 头像
+  HEO_INFO_CARD_SLOGAN: 'I am hancheng', // 座右铭
+  HEO_INFO_CARD_NAME: 'hancheng',
+  HEO_INFO_CARD_TITLE: 'Web开发者 / 博主',
+
+  // 社交链接
+  HEO_SOCIAL_LINKS: [
+    {
+      id: 1,
+      title: 'GitHub',
+      Svg: 'MyGithub',
+      url: 'https://github.com/hanchengweb'
+    },
+    {
+      id: 2,
+      title: 'Twitter',
+      Svg: 'MyTwitter',
+      url: 'https://twitter.com/hanchengweb'
+    }
+  ],
+
+  // 文章分类列表
+  HEO_POST_LIST_CATEGORY: true,
+  // 文章列表显示摘要
+  HEO_POST_LIST_SUMMARY: true,
+  // 文章列表显示预览图
+  HEO_POST_LIST_COVER: true,
+  // 文章列表默认封面图
+  HEO_POST_LIST_COVER_DEFAULT: true,
+  // 文章列表封面图的展示样式
+  HEO_POST_LIST_PREVIEW: 'small',
+  HEO_POST_LIST_COVER_HOVER_ENLARGE: true,
+  HEO_HOME_POST_TWO_COLS: false,
+
+  // 自定义字体
+  FONT_STYLE: 'font-sans',
+
+  // 博客背景图片
+  HOME_BANNER_IMAGE: '/bg_image.jpg',
+
+  // 深色主题
+  BACKGROUND_DARK: '#2d3033',
+
+  // 宽屏适配 开启后请隐藏首页左侧栏
+  HEO_LAYOUT_WIDE: true,
+  // 移动端隐藏左侧
+  isMobile: true,
+
+  // 首页顶部
+  HEO_HERO_ENABLE: true,
+  // 右下角进度
+  HEO_WIDGET_PROGRESS_ENABLE: false,
+
+  // 左侧栏宽度
+  ASIDE_WIDTH: 'w-60',
+  LEFT_CONTAINER_WIDTH: 'max-w-3xl',
+  RIGHT_CONTAINER_WIDTH: 'max-w-3xl',
+
+  // 主题配色 亮/暗模式
+  lightTheme: {
+    PRIMARY_COLOR: '#2a9d8f',
+    SELECTED_COLOR: '#81948e',
+    HOVER_COLOR: '#2a9d8f',
+    HEADER_GRADIENT: 'linear-gradient(to top, #04120e 0%, #00825b 100%)',
+    HEADER_HEIGHT: '72px',
+    // 主题
+    BACKGROUND_COLOR: '#f0f5f4',
+    BACKGROUND_COLOR_TRANSPARENT: 'rgba(240,245,244,0.8)',
+    // 文字主色调
+    FONT_COLOR: '#000',
+    // 次级文本色调
+    FONT_COLOR_Second: '#596475',
+    // LINK_ACTIVE 激活链接，首页卡片等地方
+    LINK_ACTIVE: '#2a9d8f'
+  },
+
+  darkTheme: {
+    PRIMARY_COLOR: '#2a9d8f',
+    SELECTED_COLOR: '#C7D0CB',
+    HOVER_COLOR: '#40b3a2',
+    HEADER_COLOR: '#18171D',
+    HEADER_GRADIENT:
+      'linear-gradient(to top, #101211 0%, rgba(0,0,0,0) 100%)',
+    HEADER_HEIGHT: '72px',
+    FONT_COLOR: '#fff',
+    FONT_COLOR_Second: '#99A9B3',
+    BACKGROUND_COLOR: '#18171d',
+    BACKGROUND_COLOR_TRANSPARENT: 'rgba(24,23,29,0.8)',
+    LINK_ACTIVE: '#57c4b5',
+    CODE_COLOR: '#fff',
+    CODE_BG_COLOR: '#16a085'
+  },
+
+  // 公告
+  HEO_NOTICE_ENABLED: true,
+  HEO_NOTICE_TEXTS: ["本博客主题由 hancheng 开发", "这是很好的主题"],
+  HEO_NOTICE_INTERVAL: 8000, // 公告切换时间
+
+  // 首页向下滚动按钮
+  HEO_HERO_SCROLL_DOWN_BUTTON: true,
+
+  // HERO 矩形海报
+  HEO_POST_HEADER_STYLE: 'boxed',
+
+  // 随机文章
+  HEO_RANDOM_ENABLED: true, // 随机单个文章
+  HEO_RANDOM_CATEGORY_ENABLED: false, // 随机同类别列表
+
+  // 测试
+  POST_LIST_STYLE: 'scroll',
+  LAYOUT_RANDOM_POSTS: 'none'
 }
 export default CONFIG
