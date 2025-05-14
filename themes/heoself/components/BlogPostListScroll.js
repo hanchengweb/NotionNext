@@ -36,39 +36,39 @@ const BlogPostListScroll = ({
   }
 
   // 监听滚动自动分页加载
-  const scrollTrigger = useRef(null)
-  useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      const entry = entries[0]
-      if (entry.isIntersecting) {
+  const scrollTrigger = () => {
+    requestAnimationFrame(() => {
+      const scrollS = window.scrollY + window.outerHeight
+      const clientHeight = targetRef
+        ? targetRef.current
+          ? targetRef.current.clientHeight
+          : 0
+        : 0
+      if (scrollS > clientHeight + 100) {
         handleGetMore()
       }
     })
-
-    const container = scrollTrigger.current
-    if (container) {
-      observer.observe(container)
   }
 
-    return () => {
-      observer.disconnect()
-    }
-  }, [scrollTrigger, hasMore, handleGetMore])
-
-  // 监听搜索输入框变化
+  // 监听滚动
   useEffect(() => {
-    updatePage(1)
-  }, [currentSearch])
+    window.addEventListener('scroll', scrollTrigger)
+    return () => {
+      window.removeEventListener('scroll', scrollTrigger)
+    }
+  })
 
+  const targetRef = useRef(null)
+  const POST_TWO_COLS = siteConfig('HEO_HOME_POST_TWO_COLS', true, CONFIG)
+  if (!postsToShow || postsToShow.length === 0) {
+    return <BlogPostListEmpty currentSearch={currentSearch} />
+  } else {
     return (
-    <div id='post-list' className='mt-5'>
-      <div>
-        {(!posts || posts.length === 0) && (
-          <BlogPostListEmpty currentSearch={currentSearch} />
-        )}
-        {posts && posts.length > 0 && (
-          <>
-            <div>
+      <div id='container' ref={targetRef} className='w-full'>
+        {/* 文章列表 */}
+        <div
+          className={`${POST_TWO_COLS && '2xl:grid 2xl:grid-cols-2'} grid-cols-1 gap-5`}>
+          {' '}
           {postsToShow.map(post => (
             <BlogPostCard
               key={post.id}
@@ -78,21 +78,21 @@ const BlogPostListScroll = ({
             />
           ))}
         </div>
-            <div ref={scrollTrigger} />
+
+        {/* 更多按钮 */}
+        <div>
           <div
-              onClick={handleGetMore}
-              className={`w-full my-4 ${
-                hasMore ? 'visible' : 'hidden'
-              } flex justify-center cursor-pointer`}>
-              <div className='bg-white dark:bg-[#1e1e1e] dark:text-gray-200 rounded-xl text-xl px-4 py-2 hover:text-[#2a9d8f] dark:hover:text-[#57c4b5] border'>
-                {locale.COMMON.MORE}
+            onClick={() => {
+              handleGetMore()
+            }}
+            className='w-full my-4 py-4 text-center cursor-pointer rounded-xl dark:text-gray-200'>
+            {' '}
+            {hasMore ? locale.COMMON.MORE : `${locale.COMMON.NO_MORE}`}{' '}
           </div>
-            </div>
-          </>
-        )}
         </div>
       </div>
     )
+  }
 }
 
 export default BlogPostListScroll

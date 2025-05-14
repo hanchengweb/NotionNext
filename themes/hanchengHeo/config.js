@@ -197,7 +197,7 @@ const CONFIG = {
   // 文章列表封面图的展示样式
   HEO_POST_LIST_PREVIEW: 'small',
   HEO_POST_LIST_COVER_HOVER_ENLARGE: true,
-  HEO_HOME_POST_TWO_COLS: false,
+  HEO_HOME_POST_TWO_COLS: true,
 
   // 自定义字体
   FONT_STYLE: 'font-sans',

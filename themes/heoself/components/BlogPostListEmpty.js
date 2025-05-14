@@ -11,5 +11,4 @@ const BlogPostListEmpty = ({ currentSearch }) => {
         <div className='text-gray-500 dark:text-gray-300'>{locale.COMMON.NO_MORE} {(currentSearch && <div>{currentSearch}</div>)}</div>
   </div>
 }
-
 export default BlogPostListEmpty

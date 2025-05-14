@@ -4,10 +4,8 @@ import { siteConfig } from '@/lib/config'
 import Link from 'next/link'
 import CONFIG from '../config'
 import TagItemMini from './TagItemMini'
-import { useGlobal } from '@/lib/global'
 
 const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
-  const { isDarkMode } = useGlobal()
   const showPreview =
     siteConfig('HEO_POST_LIST_PREVIEW', null, CONFIG) && post.blockMap
   if (
@@ -36,7 +34,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
         data-wow-delay='.2s'
         className={
           (POST_TWO_COLS ? '2xl:h-96 2xl:flex-col' : '') +
-          ' wow fadeInUp border bg-white dark:bg-[#1e1e1e] flex mb-4 flex-col h-80 group w-full dark:border-gray-600 hover:border-[#2a9d8f] dark:hover:border-[#40b3a2] duration-300 transition-colors justify-between overflow-hidden rounded-xl'
+          ' wow fadeInUp border bg-white dark:bg-[#1e1e1e] flex mb-4 flex-col h-[23rem] md:h-52 md:flex-row  group w-full dark:border-gray-600 hover:border-indigo-600  dark:hover:border-yellow-600 duration-300 transition-colors justify-between overflow-hidden rounded-xl'
         }>
         {/* 图片封面 */}
         {showPageCover && (
@@ -44,7 +42,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
             <div
               className={
                 (POST_TWO_COLS ? ' 2xl:w-full' : '') +
-                ' h-40 w-full overflow-hidden cursor-pointer select-none'
+                ' w-full md:w-5/12 overflow-hidden cursor-pointer select-none'
               }>
               <LazyImage
                 priority={index === 0}
@@ -60,17 +58,17 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
         <div
           className={
             (POST_TWO_COLS ? '2xl:p-4 2xl:h-48 2xl:w-full' : '') +
-            ' flex p-4 flex-col justify-between h-full w-full'
+            ' flex p-6  flex-col justify-between h-48 md:h-full w-full md:w-7/12'
           }>
-          <div>
+          <header>
             {/* 分类 */}
             {post?.category && (
               <div
-                className={`flex mb-2 items-center ${showPreview ? 'justify-center' : 'justify-start'} flex-wrap dark:text-gray-300 text-gray-600 hover:text-[#2a9d8f] dark:hover:text-[#57c4b5]`}>
+                className={`flex mb-1 items-center ${showPreview ? 'justify-center' : 'justify-start'} hidden md:block flex-wrap dark:text-gray-300 text-gray-600 hover:text-indigo-700 dark:hover:text-yellow-500`}>
                 <Link
                   passHref
                   href={`/category/${post.category}`}
-                  className='cursor-pointer text-sm font-normal menu-link '>
+                  className='cursor-pointer text-xs font-normal menu-link '>
                   {post.category}
                 </Link>
               </div>
@@ -81,7 +79,7 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
               href={post?.href}
               passHref
               className={
-                'group-hover:text-[#2a9d8f] dark:hover:text-[#57c4b5] dark:group-hover:text-[#57c4b5] text-black dark:text-gray-100 line-clamp-2 replace cursor-pointer text-lg font-extrabold leading-tight'
+                ' group-hover:text-indigo-700 dark:hover:text-yellow-700 dark:group-hover:text-yellow-600 text-black dark:text-gray-100  line-clamp-2 replace cursor-pointer text-xl font-extrabold leading-tight'
               }>
               {siteConfig('POST_TITLE_ICON') && (
                 <NotionIcon
@@ -91,18 +89,18 @@ const BlogPostCard = ({ index, post, showSummary, siteInfo }) => {
               )}
               <span className='menu-link '>{post.title}</span>
             </Link>
+          </header>
 
-            {/* 摘要 */}
-            {(!showPreview || showSummary) && (
-              <div className='line-clamp-2 replace text-gray-700 dark:text-gray-300 text-sm font-light leading-relaxed mt-4'>
-                {post.summary}
-              </div>
-            )}
-          </div>
+          {/* 摘要 */}
+          {(!showPreview || showSummary) && (
+            <main className='line-clamp-2 replace text-gray-700  dark:text-gray-300 text-sm font-light leading-tight'>
+              {post.summary}
+            </main>
+          )}
 
-          {/* 底部 */}
-          <div className='mt-4 flex justify-between'>
-            <div className='flex-nowrap overflow-x-auto'>
+          <div className='md:flex-nowrap flex-wrap md:justify-start inline-block'>
+            <div>
+              {' '}
               {post.tagItems?.map(tag => (
                 <TagItemMini key={tag.name} tag={tag} />
               ))}
